@@ -11,6 +11,10 @@ export class BeneficiaryService {
 
   constructor(private restApiService: RestApiService) { }
 
+  /**
+   * Deletes beneficiaries
+   * @returns beneficiaries
+   */
   deleteBeneficiaries(id?: number): Observable<any> {
     const baseParam: Action = {};
     baseParam.url = '/beneficiaries';

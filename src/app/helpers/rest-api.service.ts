@@ -54,7 +54,7 @@ export class RestApiService {
   }
 
   public getHttpOptions(payload: any, baseParam: Action): any {
-    let httpOptions: any = { params: payload.queryParams };
+    const httpOptions: any = { params: payload.queryParams };
     if (payload.headers && payload.headers.get('responseType')) {
       httpOptions[`responseType`] = payload.headers.get('responseType');
     }
@@ -63,7 +63,6 @@ export class RestApiService {
     }
     return httpOptions;
   }
-
 
 
 }
