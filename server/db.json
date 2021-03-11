@@ -31,16 +31,16 @@
   ],
   "beneficiaries": [
     {
-      "name": "PostTestTETT",
-      "accountnumber": "ES50 1234 4955 4443 2222",
-      "bank": "Nairobi Bank",
-      "id": 1
-    },
-    {
       "name": "Test2",
       "accountnumber": "ES50 1236 4955 4443 2222",
       "bank": "Moscow Bank",
       "id": 2
+    },
+    {
+      "name": "TestMyTest",
+      "accountnumber": "2323 1234 123232 123311",
+      "bank": "Nairobi Bank",
+      "id": 3
     }
   ]
 }

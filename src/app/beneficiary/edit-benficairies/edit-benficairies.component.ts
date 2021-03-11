@@ -44,7 +44,7 @@ export class EditBenficairiesComponent implements OnInit, OnDestroy {
    * Deletes benficairies from system
    */
   delete(): void {
-    this.beneficiaryService.deleteBeneficiaries(1)
+    this.beneficiaryService.deleteBeneficiaries(Number(this.acnId))
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
         this.router.navigate(['ibank/summary']);
