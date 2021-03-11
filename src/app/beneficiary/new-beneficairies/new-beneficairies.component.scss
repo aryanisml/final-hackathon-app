@@ -7,3 +7,17 @@
     background-color:  #ff6200;
     padding: 15px 50px 10px 50px;
 }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
+  background-color: #ff6200;
+  color:white;
+}
+button {
+  background-color: #ff6200;
+  color:white;
+
+}
+button::hover{
+  background-color: #ff6200;
+  color:white;
+
+}

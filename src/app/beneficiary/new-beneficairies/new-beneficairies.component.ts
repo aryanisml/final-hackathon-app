@@ -57,4 +57,8 @@ export class NewBeneficairiesComponent implements OnInit {
 
   }
 
+  navto(){
+    this.router.navigate(['ibank']);
+  }
+
 }

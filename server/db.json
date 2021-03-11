@@ -31,16 +31,16 @@
   ],
   "beneficiaries": [
     {
-      "id": 1,
       "name": "Test1",
       "accountnumber": "ES50 6874 4955 4443 2222",
-      "bank": "Nairobi Bank"
+      "bank": "Nairobi Bank",
+      "id": 1
     },
     {
-      "id": 2,
       "name": "Test2",
       "accountnumber": "ES50 9658 4955 4443 2222",
-      "bank": "Moscow Bank"
+      "bank": "Moscow Bank",
+      "id": 2
     },
     {
       "id": 3,
