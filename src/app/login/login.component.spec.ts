@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
+import { Users } from './users';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -8,9 +10,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [LoginComponent],
+      imports: [RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -22,4 +25,12 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it(`login with invalid inputs`, () => {
+  //   const userObj: Users = {};
+  //   userObj.username = `abc`;
+  //   userObj.password = `abc123`;
+  // });
+
+
 });

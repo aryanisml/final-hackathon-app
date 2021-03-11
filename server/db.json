@@ -1,46 +1,46 @@
 {
-    "users": [
-        {
-            "username": "professor",
-            "password": "admin123",
-            "isAvilable": "yes"
-        },
-        {
-            "username": "Arturito",
-            "password": "admin123",
-            "isAvilable": "yes"
-        }
-    ],
-    "bankdetails": [
-        {
-            "code": "1234",
-            "bank": "Nairobi Bank"
-        },
-        {
-            "code": "1235",
-            "bank": "Denver Bank"
-        },
-        {
-            "code": "1236",
-            "bank": "Moscow Bank"
-        },
-        {
-            "code": "1237",
-            "bank": "Tokio Bank"
-        }
-    ],
-    "beneficiaries": [
-        {
-            "id":1,
-            "name": "Test1",
-            "accountnumber": "ES50 1234 4955 4443 2222",
-            "bank": "Nairobi Bank"
-        },
-        {
-            "id":2,
-            "name": "Test2",
-            "accountnumber": "ES50 1236 4955 4443 2222",
-            "bank": "Moscow Bank"
-        }
-    ]
-}
+  "users": [
+    {
+      "username": "professor",
+      "password": "admin123",
+      "isAvilable": "yes"
+    },
+    {
+      "username": "Arturito",
+      "password": "admin123",
+      "isAvilable": "yes"
+    }
+  ],
+  "bankdetails": [
+    {
+      "code": "1234",
+      "bank": "Nairobi Bank"
+    },
+    {
+      "code": "1235",
+      "bank": "Denver Bank"
+    },
+    {
+      "code": "1236",
+      "bank": "Moscow Bank"
+    },
+    {
+      "code": "1237",
+      "bank": "Tokio Bank"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "id": 1,
+      "name": "Test1",
+      "accountnumber": "ES50 1234 4955 4443 2222",
+      "bank": "Nairobi Bank"
+    },
+    {
+      "id": 2,
+      "name": "Test2",
+      "accountnumber": "ES50 1236 4955 4443 2222",
+      "bank": "Moscow Bank"
+    }
+  ]
+} 

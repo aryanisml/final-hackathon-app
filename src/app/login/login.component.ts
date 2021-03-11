@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
   /**
-   * Creates form
+   * Creates form build the login form
    */
   createForm(): void {
     this.loginForm = this.formBuilder.group({
@@ -53,8 +53,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Determines whether submit on
-   * @returns submit
+   * On Submit calling the login service with inputs. After successful login
+   * will navigate to the beneficiary page. If it is failed we show the message.
    */
   onSubmit(): void {
     this.submitted = true;
@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     };
     this.loginService.login(params)
       .pipe((takeUntil(this.destory$)))
+      // tslint:disable-next-line: deprecation
       .subscribe((response) => {
         if (response && response.length > 0) {
           this.errormsg = false;
@@ -77,7 +78,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.loading = false;
         }
       },
-        catchError(async (error) => console.log(error)));
+        catchError(async (error) => {
+          console.log(error);
+        }));
 
   }
 
