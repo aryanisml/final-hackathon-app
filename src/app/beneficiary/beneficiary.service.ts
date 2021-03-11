@@ -2,18 +2,25 @@ import { Injectable } from '@angular/core';
 import { RestApiService } from '../helpers/rest-api.service';
 import { environment } from '../../environments/environment';
 import { Action } from '../helpers/action';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs/internal/Subject';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class BeneficiaryService {
+  userAccountData: BehaviorSubject<any>;
+  constructor(
+    private restApiService: RestApiService,
+    private router: Router) {
+    this.userAccountData = new BehaviorSubject<any>(null);
+  }
 
+  get userAcccountData$(): Observable<any> {
+    return this.userAccountData.asObservable();
+  }
 
-  editData = new Subject<any>();
-    cast = this.editData.asObservable();
-  constructor(private restApiService: RestApiService) { }
 
   /**
    * Deletes beneficiaries
@@ -26,5 +33,17 @@ export class BeneficiaryService {
       .pipe(map(response => response));
   }
 
-
+  /**
+   * Edits beneficiaries
+   * @param accountData
+   * Navigating to summary view
+   */
+  editBeneficiaries(accountData: any): Observable<any> {
+    const baseParam: Action = {};
+    baseParam.url = '/beneficiaries';
+    return this.restApiService.put(environment.mainUrl, baseParam, {}, accountData, Number(accountData.id))
+      .pipe(map(response => {
+        this.router.navigate([`ibank`]);
+      }));
+  }
 }

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ApiInterceptor } from './helpers/api.interceptor';
 import { CommonMaterialModule } from './materials/common-material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CommonMaterialModule } from './materials/common-material.module';
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
+    FormsModule,
     CommonMaterialModule
   ],
   providers: [{
