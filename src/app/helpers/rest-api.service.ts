@@ -13,22 +13,22 @@ export class RestApiService {
     protected httpClient: HttpClient
   ) { }
 
-  protected getMethod(endPointUrl: string, baseParam: Action, httpOptions: {}): Observable<any> {
+  public getMethod(endPointUrl: string, baseParam: Action, httpOptions: {}): Observable<any> {
     return this.httpClient.get(`${endPointUrl}${baseParam.url}`, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('get', error)));
   }
 
-  protected postMethod(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any): Observable<any> {
+  public postMethod(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any): Observable<any> {
     return this.httpClient.post(`${endPointUrl}${baseParam.url}`, reqData, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('post', error)));
   }
 
-  protected put(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any): Observable<any> {
+  public put(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any): Observable<any> {
     return this.httpClient.put(`${endPointUrl}${baseParam.url}`, reqData, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('put', error)));
   }
 
-  protected delete(endPointUrl: string, baseParam: Action, httpOptions: {}, id: string | number): Observable<any> {
+  public delete(endPointUrl: string, baseParam: Action, httpOptions: {}, id: string | number): Observable<any> {
     return this.httpClient.delete(`${endPointUrl}${baseParam.url}/${id}`, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('delete', error)));
   }
@@ -52,4 +52,18 @@ export class RestApiService {
 
     return Promise.reject(error);
   }
+
+  public getHttpOptions(payload: any, baseParam: Action): any {
+    let httpOptions: any = { params: payload.queryParams };
+    if (payload.headers && payload.headers.get('responseType')) {
+      httpOptions[`responseType`] = payload.headers.get('responseType');
+    }
+    if (payload.headers && payload.headers.get('observe')) {
+      httpOptions[`observe`] = payload.headers.get('observe');
+    }
+    return httpOptions;
+  }
+
+
+
 }
