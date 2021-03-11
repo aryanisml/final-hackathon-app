@@ -12,18 +12,14 @@ import { BeneficiaryService } from '../beneficiary.service';
 export class EditBenficairiesComponent implements OnInit, OnDestroy {
 
   private destory$: Subject<boolean> = new Subject<boolean>();
-  updateFav:any;
+  updateFav: any;
   constructor(
     private beneficiaryService: BeneficiaryService,
     private router: Router) {
-      this.beneficiaryService.cast.subscribe((data) => {
-        console.log('Data:', data);
-        this.updateFav = data;
-      })
-     }
+  }
 
   ngOnInit(): void {
-    console.log(this.updateFav)
+    this.fetchData();
   }
 
   ngOnDestroy(): void {
@@ -31,12 +27,29 @@ export class EditBenficairiesComponent implements OnInit, OnDestroy {
     this.destory$.complete();
   }
 
+
+  /**
+   * Deletes benficairies from system
+   */
   delete(): void {
     this.beneficiaryService.deleteBeneficiaries(1)
       .pipe(takeUntil(this.destory$))
       .subscribe((response) => {
-        console.log(response);
         this.router.navigate(['ibank/summary']);
+      });
+  }
+
+
+  /**
+   * Fetchs edit data
+   */
+  fetchData(): void {
+    this.beneficiaryService.userAcccountData$
+      .pipe(takeUntil(this.destory$))
+      .subscribe(response => {
+        if (response) {
+          console.log(response);
+        }
       });
   }
 

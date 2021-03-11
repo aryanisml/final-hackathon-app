@@ -23,7 +23,8 @@ export class SummaryBeneficiaryComponent implements OnInit {
   obs: Observable<any> | undefined;
   ELEMENT_DATA: Favourities[] = [];
   dataSource: MatTableDataSource<Favourities> = new MatTableDataSource<Favourities>(this.ELEMENT_DATA);
-  constructor(private changeDetectorRef: ChangeDetectorRef, private _service:RestApiService,
+  constructor(private changeDetectorRef: ChangeDetectorRef, 
+    private _service: RestApiService,
     private beneficiaryService: BeneficiaryService,
     private router: Router) { }
 
@@ -39,13 +40,10 @@ export class SummaryBeneficiaryComponent implements OnInit {
     }
   }
 
-  getFavourities () {
-    this._service.getFavourites().subscribe((data:any) => {
-
+  getFavourities() {
+    this._service.getFavourites().subscribe((data: any) => {
       this.dataSource.data = data;
-
       this.dataSource.paginator = this.paginator;
-
       this.changeDetectorRef.detectChanges();
       this.dataSource.paginator = this.paginator;
       this.obs = this.dataSource.connect();
@@ -53,11 +51,9 @@ export class SummaryBeneficiaryComponent implements OnInit {
     });
   }
 
-  edit(data:any) {
-    console.log('ee', data)
-    this.beneficiaryService.editData.next(data);
-
-   this.router.navigate(['ibank/edit'])
+  edit(data: any) {
+    this.beneficiaryService.userAccountData.next(data);
+    this.router.navigate(['ibank/edit']);
   }
 
 }

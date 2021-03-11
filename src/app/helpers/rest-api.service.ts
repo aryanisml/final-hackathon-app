@@ -3,11 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of, Subject } from 'rxjs';
 import { Action } from './action';
+import { Beneficiaries } from './entity/beneficiaries';
+import { BankDetails } from './entity/bankDetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiService {
+  apiURL: string = "http://localhost:3000";
 
   constructor(
     protected httpClient: HttpClient
@@ -15,8 +18,33 @@ export class RestApiService {
 
   private baseURL = "http://localhost:3000/";
 
-  getFavourites () {
-    return this.httpClient.get(`${this.baseURL}beneficiaries`)
+  getFavourites() {
+    return this.httpClient.get(`${this.baseURL}beneficiaries`);
+  }
+
+  // Adds an employee to JSON DB
+  addNewCustomer(beneficiaries: Beneficiaries) {
+    this.httpClient.post(`${this.apiURL}/beneficiaries`, beneficiaries).subscribe(
+      data => {
+        console.log('POST Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
+  }
+
+  getBankName(code: any): Observable<BankDetails> {
+    let updatedCode;
+    if (code.length >= 9) {
+      updatedCode = code.replace(/ /g, "").substring(4, 8);
+    }
+    return this.httpClient.get<BankDetails>(`${this.apiURL}/bankdetails?code=${updatedCode}`);
+  }
+
+  getCustomerDetails(): Observable<Beneficiaries> {
+    return this.httpClient.get<Beneficiaries>(`${this.apiURL}/summary`);
+
   }
   public getMethod(endPointUrl: string, baseParam: Action, httpOptions: {}): Observable<any> {
     return this.httpClient.get(`${endPointUrl}${baseParam.url}`, { ...httpOptions })
@@ -28,8 +56,8 @@ export class RestApiService {
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('post', error)));
   }
 
-  public put(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any): Observable<any> {
-    return this.httpClient.put(`${endPointUrl}${baseParam.url}`, reqData, { ...httpOptions })
+  public put(endPointUrl: string, baseParam: Action, httpOptions: {}, reqData: any, id?: string | number): Observable<any> {
+    return this.httpClient.put(`${endPointUrl}${baseParam.url}/${id}`, reqData, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('put', error)));
   }
 
