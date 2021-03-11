@@ -3,16 +3,43 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Action } from './action';
+import { Beneficiaries } from './entity/beneficiaries';
+import { BankDetails } from './entity/bankDetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiService {
+  apiURL: string = "http://localhost:3000";
 
   constructor(
     protected httpClient: HttpClient
   ) { }
 
+ // Adds an employee to JSON DB
+ addNewCustomer(beneficiaries: Beneficiaries) {
+  this.httpClient.post(`${this.apiURL}/beneficiaries`, beneficiaries).subscribe(
+      data => {
+          console.log('POST Request is successful ', data);
+      },
+      error => {
+          console.log('Error', error);
+      }
+  );
+}
+
+getBankName(code:any): Observable<BankDetails>{
+  let updatedCode;
+  if(code.length>=9){
+    updatedCode=code.replace(/ /g,"").substring(4,8);
+  }
+  return this.httpClient.get<BankDetails>(`${this.apiURL}/bankdetails?code=${updatedCode}`);
+}
+
+getCustomerDetails(): Observable<Beneficiaries>{
+  return this.httpClient.get<Beneficiaries>(`${this.apiURL}/summary`);
+  
+}
   protected getMethod(endPointUrl: string, baseParam: Action, httpOptions: {}): Observable<any> {
     return this.httpClient.get(`${endPointUrl}${baseParam.url}`, { ...httpOptions })
       .pipe(map(res => this.handleResponse(res)), catchError(error => this.handleHttpError('get', error)));
