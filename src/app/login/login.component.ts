@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private formBuilder: FormBuilder) { }
 
 
   /**
@@ -45,7 +46,10 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Creates form
    */
   createForm(): void {
-    this.loginForm = this.loginService.getForms();
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
   /**

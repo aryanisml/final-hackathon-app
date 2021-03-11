@@ -13,21 +13,7 @@ import { map } from 'rxjs/operators';
 export class LoginService {
 
   constructor(
-    private restApiService: RestApiService,
-    private formBuilder: FormBuilder) { }
-
-
-  /**
-   * Gets forms
-   * @returns formGroup
-   */
-  getForms(): FormGroup {
-    return this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
-
+    private restApiService: RestApiService) { }
 
   /**
    * Logins login service
