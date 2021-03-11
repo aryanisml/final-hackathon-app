@@ -42,8 +42,6 @@ export class BeneficiaryService {
     const baseParam: Action = {};
     baseParam.url = '/beneficiaries';
     return this.restApiService.put(environment.mainUrl, baseParam, {}, accountData, Number(accountData.id))
-      .pipe(map(response => {
-        this.router.navigate([`ibank`]);
-      }));
+      .pipe(map(response => response));
   }
 }

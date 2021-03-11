@@ -3,3 +3,24 @@
         background-color: orange;
         color:white;
     }
+
+    button {
+        background-color: orange;
+        color:white;
+
+    }
+    button::hover{
+        background-color: orange;
+        color:white;
+
+    }
+    .container >button :focus {
+        outline: none;
+    }
+
+    .btnContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:50%;
+    }

@@ -17,7 +17,10 @@ export class NewBeneficairiesComponent implements OnInit {
   validPattern: any;
   bankName: any;
   isAlive: any;
-  constructor(private formBuilder: FormBuilder, private restApiService: RestApiService, private router: Router,
+  constructor(
+    private formBuilder: FormBuilder,
+    private restApiService: RestApiService,
+    private router: Router,
     private renderer: Renderer2) { }
 
   ngOnInit() {
@@ -50,7 +53,6 @@ export class NewBeneficairiesComponent implements OnInit {
     this.restApiService.getBankName(value.target.value).subscribe(res => {
       let Name: any = res;
       this.bankName = Name[0].bank;
-
     })
 
   }
