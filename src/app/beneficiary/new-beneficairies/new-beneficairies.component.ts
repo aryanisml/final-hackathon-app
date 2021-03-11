@@ -40,6 +40,7 @@ export class NewBeneficairiesComponent implements OnInit {
     if (this.custCreateForm.invalid) {
       return;
     }
+    this.custCreateForm.value.bank=this.bankName;
     this.restApiService.addNewCustomer(this.custCreateForm.value);
 
     this.router.navigate(['ibank']);
