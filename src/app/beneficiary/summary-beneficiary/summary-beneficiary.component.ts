@@ -1,3 +1,4 @@
+import { BeneficiaryService } from './../beneficiary.service';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,6 +24,7 @@ export class SummaryBeneficiaryComponent implements OnInit {
   ELEMENT_DATA: Favourities[] = [];
   dataSource: MatTableDataSource<Favourities> = new MatTableDataSource<Favourities>(this.ELEMENT_DATA);
   constructor(private changeDetectorRef: ChangeDetectorRef, private _service:RestApiService,
+    private beneficiaryService: BeneficiaryService,
     private router: Router) { }
 
 
@@ -52,10 +54,10 @@ export class SummaryBeneficiaryComponent implements OnInit {
   }
 
   edit(data:any) {
-    //console.log('data:', data)
+    console.log('ee', data)
+    this.beneficiaryService.editData.next(data);
 
-   this.router.navigate(['ibank/edit'], { state: { example: data } });
-   //this.router.navigate(['ibank/edit', data])
+   this.router.navigate(['ibank/edit'])
   }
 
 }

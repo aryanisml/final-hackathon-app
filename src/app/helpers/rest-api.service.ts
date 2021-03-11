@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Action } from './action';
 
 @Injectable({
@@ -12,9 +12,9 @@ export class RestApiService {
   constructor(
     protected httpClient: HttpClient
   ) { }
+
   private baseURL = "http://localhost:3000/";
 
-  
   getFavourites () {
     return this.httpClient.get(`${this.baseURL}beneficiaries`)
   }

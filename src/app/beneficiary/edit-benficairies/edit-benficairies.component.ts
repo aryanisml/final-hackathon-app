@@ -12,11 +12,18 @@ import { BeneficiaryService } from '../beneficiary.service';
 export class EditBenficairiesComponent implements OnInit, OnDestroy {
 
   private destory$: Subject<boolean> = new Subject<boolean>();
+  updateFav:any;
   constructor(
     private beneficiaryService: BeneficiaryService,
-    private router: Router) { }
+    private router: Router) {
+      this.beneficiaryService.cast.subscribe((data) => {
+        console.log('Data:', data);
+        this.updateFav = data;
+      })
+     }
 
   ngOnInit(): void {
+    console.log(this.updateFav)
   }
 
   ngOnDestroy(): void {
