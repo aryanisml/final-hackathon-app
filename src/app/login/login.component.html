@@ -1,24 +1,36 @@
-
-<div class="container"> 
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
-      <mat-form-field floatLabel="never" class="form-element">
-        <input type="text" matInput placeholder="Username" formControlName="username">
-        <mat-error *ngIf="formGroup.controls['username'].invalid">
-          {{getError('user')}}
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field floatLabel="never" class="form-element">
-        <input type="password" matInput placeholder="Password" formControlName="password">
-        <mat-error *ngIf="!formGroup.controls['password'].valid">
-          {{getError('pass')}}
-        </mat-error>
-      </mat-form-field>
-  
-      <div class="form-element">
-        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
-      </div>
-  
-    </form>
+<div class="container">
+  <div class="card ">
+    <div class="card-header">
+      <h2>IBank Login</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+          </button>
+        </div>
+        <div>
+          <small *ngIf="errormsg" class="text-danger">User is not available</small>
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div>

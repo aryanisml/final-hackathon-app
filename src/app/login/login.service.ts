@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiPayload } from '../helpers/api-payload';
 import { RestApiService } from '../helpers/rest-api.service';
 import { Users } from './users';
@@ -11,8 +12,28 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService {
 
-  constructor(private restApiService: RestApiService) { }
+  constructor(
+    private restApiService: RestApiService,
+    private formBuilder: FormBuilder) { }
 
+
+  /**
+   * Gets forms
+   * @returns formGroup
+   */
+  getForms(): FormGroup {
+    return this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
+
+  /**
+   * Logins login service
+   * @param userData
+   * @returns login
+   */
   login(userData: Users): Observable<Array<Users>> {
     const params = {
       username: userData.username,
