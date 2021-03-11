@@ -1,1 +1,18 @@
-<p>summary-beneficiary works!</p>
+<div class="main-div">
+  <mat-card class="example-card selected-card " routerLink="add">
+    <mat-card-header>
+      <mat-icon class="custom-color">add</mat-icon>
+      <mat-card-title class="custom-color">Add a new account</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  <mat-card class="example-card selected-card" *ngFor="let card of obs | async">
+    <mat-card-header (click)="edit(card)">
+      <mat-icon class="custom-color">edit</mat-icon>
+
+      <mat-card-title class="custom-color">{{card.name}}</mat-card-title>
+      <mat-card-subtitle>{{card.accountnumber}}</mat-card-subtitle>
+      <mat-card-subtitle>{{card.bank}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
