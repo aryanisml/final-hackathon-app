@@ -20,6 +20,7 @@ export class EditBenficairiesComponent implements OnInit, OnDestroy {
   private destory$: Subject<boolean> = new Subject<boolean>();
   updateFav: any;
   acnId: number | undefined;
+  customerName: string | undefined;
   get f() { return this.custCreateForm.controls; }
   constructor(
     private beneficiaryService: BeneficiaryService,
@@ -61,6 +62,7 @@ export class EditBenficairiesComponent implements OnInit, OnDestroy {
         if (response) {
           console.log(this.f);
           this.acnId = response.id;
+          this.customerName = response.name;
           this.setData(response);
         }
       });

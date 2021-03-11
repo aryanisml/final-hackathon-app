@@ -37,10 +37,10 @@
       "id": 1
     },
     {
-      "id": 2,
       "name": "Test2",
       "accountnumber": "ES50 1236 4955 4443 2222",
-      "bank": "Moscow Bank"
+      "bank": "Moscow Bank",
+      "id": 2
     }
   ]
 }
