@@ -1,6 +1,6 @@
 
 .container {
-        justify-content: center; 
+        justify-content: center;
         display: flex;
         height: 100%;
         width: 100%;
@@ -12,12 +12,12 @@
         width: 40%;
     }
     button {
-        background-color: orange;
+        background-color: #ff6200;
         color:white;
 
     }
     button::hover{
-        background-color: orange;
+        background-color: #ff6200;
         color:white;
 
     }
@@ -26,10 +26,10 @@
     }
 
     .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active{
-        background-color: orange;
+        background-color: #ff6200;
         color:white;
     }
 
     .card-header >h2 {
-        color:orange;
+        color:#ff6200;
     }

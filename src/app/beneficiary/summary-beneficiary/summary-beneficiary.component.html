@@ -1,5 +1,13 @@
+<mat-toolbar color='primary' class="navbar">
+  <div>Titans Bank</div>
+  <div>
+
+
+
+  </div>
+</mat-toolbar>
 <div class="main-div">
-  <mat-card class="example-card selected-card " routerLink="add">
+  <mat-card class="example-card selected-card addCard" routerLink="add">
     <mat-card-header>
       <mat-icon class="custom-color">add</mat-icon>
       <mat-card-title class="custom-color">Add a new account</mat-card-title>
@@ -14,5 +22,5 @@
       <mat-card-subtitle>{{card.bank}}</mat-card-subtitle>
     </mat-card-header>
   </mat-card>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
 </div>
